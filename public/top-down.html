@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
         <script src="js/aframe-v0.8.2.min.js"></script>
         <script src="js/aframe-physics-system.min.js"></script>
         <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script> 
@@ -17,11 +18,12 @@
         <script src="js/read.js"></script>
         <script src="js/pickup.js"></script>
         <script src="js/camSwitch.js"></script>
+        <script src="js/catch.js"></script>
     </head>
     <body>
         <a-scene>
-            <a-entity position="0 17 0" rotation="0 0 0">
-                <a-entity id="watchCam1" position="-38 0 0" rotation="0 -90 0" camera class="activeCamera">
+            <a-entity position="0 50 0" rotation="0 0 0">
+                <a-entity id="watchCam1" position="-55 0 -55" rotation="-45 -135 0" camera class="activeCamera">
                     <a-entity id="camTarget1" cam-switch geometry="primitive: sphere" material="color: blue"></a-entity>
                     <a-entity id="cursor" cursor="rayOrigin:mouse" super-hands="colliderEvent:raycaster-intersection;colliderEventProperty:els;colliderEndEvent:raycaster-intersection-cleared;colliderEndEventProperty:clearedEls"></a-entity>
                 </a-entity>
@@ -35,7 +37,14 @@
                     <a-entity class="camCountdown" text="value: 3; width: 3.5; wrapCount: 1; color: red" visible="false" rotation="0 180 0"></a-entity>
                     <a-entity class="camCountdown" text="value: 3; width: 3.5; wrapCount: 1; color: red" visible="false" rotation="0 270 0"></a-entity>
             </a-entity>
-            <a-entity id="playerEmulate" geometry="primitive: box;" position="0 1 0" scale="1 2 1" material="color: red"></a-entity>
+            <a-entity 
+                id="playerEmulate"
+                catch 
+                geometry="primitive: box;" 
+                position="0 1 0" 
+                scale="1 2 1" 
+                material="color: red">
+            </a-entity>
             <a-entity
                 id="ground" 
                 static-body="mass: 20" 
@@ -43,6 +52,8 @@
                 rotation="-90 0 0" 
                 material="color: black">
             </a-entity>
+            <!-- <a-entity geometry="primitive: plane; width: 100; height: 50" position="0 25 50" rotation="0 180 0" material="color: black"></a-entity>
+            <a-entity geometry="primitive: plane; width: 100; height: 50" position="50 25 0" rotation="0 -90 0" material="color: black"></a-entity> -->
             <a-entity 
                 id="box"
                 static-body
@@ -53,6 +64,9 @@
                 position="0 1 -4">
             </a-entity>
         </a-scene>
+        <div id="winText" class="fullScreen">
+            <h1>YOU CAUGHT THE SMUGGLER</h1>
+        </div>
         <script>
             // set correct cursor orientation
             let cursor = document.querySelector('#cursor');

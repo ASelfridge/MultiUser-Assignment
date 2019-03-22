@@ -30,3 +30,14 @@ socket.on('writeVisibility', function(data){
     let object = document.querySelector('#' + data.id);
     object.setAttribute('visible', data.visible);
 });
+
+socket.on('groundLose', function(){
+    // show lose screen
+    let loseText = document.querySelector('#loseText');
+    loseText.style.display = 'block';
+
+    // remove ability to move/look around
+    let player = document.querySelector('#player1');
+    player.removeAttribute('wasd-controls');
+    player.removeAttribute('look-controls');
+});
