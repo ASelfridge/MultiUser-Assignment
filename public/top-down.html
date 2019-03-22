@@ -2,6 +2,8 @@
 <html>
     <head>
         <script src="js/aframe-v0.8.2.min.js"></script>
+        <script src="js/aframe-physics-system.min.js"></script>
+        <script src="https://unpkg.com/super-hands@3.0.0/dist/super-hands.min.js"></script> 
         <script src="js/global.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script>
@@ -12,13 +14,19 @@
                 console.log("connected!");
             });
         </script>
-        <script src="js/write.js"></script>
+        <script src="js/read.js"></script>
     </head>
     <body>
         <a-scene>
-            <a-entity id="player2" position="0 50 0" rotation="-90 0 0" camera wasd-controls></a-entity>
-            <a-entity write geometry="primitive: box;" position="0 1 0" scale="1 2 1" material="color: red"></a-entity>
-            <a-entity geometry="primitive: plane; width: 100; height: 100" rotation="-90 0 0" material="color: black"></a-entity>
+            <a-entity id="player2" position="0 17 45" rotation="0 0 0">
+                <a-entity id="topDownCam" camera>
+                    <a-entity id="cursor" cursor="rayOrigin:mouse" raycaster="showLine: true;" super-hands="colliderEvent:raycaster-intersection;colliderEventProperty:els;colliderEndEvent:raycaster-intersection-cleared;colliderEndEventProperty:clearedEls"></a-entity>
+                </a-entity>
+            </a-entity>
+            <a-entity id="playerEmulate" geometry="primitive: box;" position="0 1 0" scale="1 2 1" material="color: red"></a-entity>
+            <a-entity static-body geometry="primitive: plane; width: 100; height: 100" rotation="-90 0 0" material="color: black"></a-entity>
+            <a-entity read="writeTo: pickupBox; file: 2" grabbable geometry="primitve: box" position="0 1 -4"></a-entity>
         </a-scene>
     </body>
+    <script src="js/write.js"></script>
 </html>

@@ -29,6 +29,10 @@ socketIO.on('connection', function(socket) {
         console.log(data);
         socketIO.sockets.emit('writePos', data);
     });
+    socket.on('readPos2', function(data) {
+        console.log(data);
+        socketIO.sockets.emit('writePos2', data);
+    });
 });
 
 // start server
