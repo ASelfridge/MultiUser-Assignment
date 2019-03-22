@@ -8,10 +8,15 @@ AFRAME.registerComponent('cam-switch', {
         let text = document.getElementsByClassName('camCountdown');
 
         el.addEventListener('mousedown', function(e) {
-            console.log(el);
             if(!swappingCam){
+                // change cam target colour
+                el.setAttribute('material', {'color': 'red'});
+                socket.emit('changeVisibility', {id: el.id, visible: true});
+                socket.emit('changeColour', {id: el.id, colour: 'red'});
+
                 // initiate countdown
                 swappingCam = true;
+                camCountdown = MAX_COUNTDOWN;
                 // show countdown text
                 for(i = 0; i < text.length; i++) {
                     text[i].setAttribute('visible', 'true');
@@ -42,10 +47,17 @@ AFRAME.registerComponent('cam-switch', {
         let el = Context_AF.el;
         let parent = el.object3D.parent;
         let text = document.getElementsByClassName('camCountdown');
+
+        // switch cam target colour back
+        el.setAttribute('material', {'color': 'blue'});
+        socket.emit('changeColour', {id: el.id, colour: 'blue'});
         
         // remove active camera
         let activeCam = document.getElementsByClassName('activeCamera');
         activeCam[0].setAttribute('camera', {'active': 'false'});
+        // hide active cam target for ground player
+        let target_id = 'camTarget' + activeCam[0].id.replace('watchCam', '');
+        socket.emit('changeVisibility', {id: target_id, visible: false});
         activeCam[0].classList.remove('activeCamera');
 
         // assign active camera to one associated with this object
@@ -59,7 +71,7 @@ AFRAME.registerComponent('cam-switch', {
         cursor.object3D.rotation.set(-1 * parent.el.object3D.rotation._x, -1 * parent.el.object3D.rotation._y, -1 * parent.el.object3D.rotation._z);
 
         // reset countdown attributes
-        camCountdown = 3;
+        camCountdown = MAX_COUNTDOWN;
         swappingCam = false;
         for(i = 0; i < text.length; i++) {
             text[i].setAttribute('visible', 'false');

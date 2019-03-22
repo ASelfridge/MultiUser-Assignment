@@ -13,8 +13,20 @@ socket.on('writeCountdown', function(visible){
         }
         else {
             text[i].setAttribute('visible', 'false');
-            camCountdown = 4;
+            camCountdown = MAX_COUNTDOWN + 1;
         }
     }
     camCountdown -= 1;
+});
+
+socket.on('writeColour', function(data){
+    // change colour of object with data.id
+    let object = document.querySelector('#' + data.id);
+    object.setAttribute('material', {'color': data.colour});
+});
+
+socket.on('writeVisibility', function(data){
+    // hide object with given id
+    let object = document.querySelector('#' + data.id);
+    object.setAttribute('visible', data.visible);
 });

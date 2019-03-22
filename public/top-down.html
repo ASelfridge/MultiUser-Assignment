@@ -22,11 +22,11 @@
         <a-scene>
             <a-entity position="0 17 0" rotation="0 0 0">
                 <a-entity id="watchCam1" position="-38 0 0" rotation="0 -90 0" camera class="activeCamera">
-                    <a-entity cam-switch geometry="primitive: sphere"></a-entity>
+                    <a-entity id="camTarget1" cam-switch geometry="primitive: sphere" material="color: blue"></a-entity>
                     <a-entity id="cursor" cursor="rayOrigin:mouse" super-hands="colliderEvent:raycaster-intersection;colliderEventProperty:els;colliderEndEvent:raycaster-intersection-cleared;colliderEndEventProperty:clearedEls"></a-entity>
                 </a-entity>
                 <a-entity id="watchCam2" position="38 0 0" rotation="-15 90 0" camera="active: false">
-                    <a-entity cam-switch id="ball" geometry="primitive: sphere"></a-entity>
+                    <a-entity id="camTarget2" cam-switch geometry="primitive: sphere" material="color: blue"></a-entity>
                 </a-entity>
             </a-entity>
             <a-entity position="0 20 0">

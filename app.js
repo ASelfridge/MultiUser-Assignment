@@ -38,6 +38,14 @@ socketIO.on('connection', function(socket) {
     socket.on('setCountdown', function(data){
         socketIO.sockets.emit('writeCountdown', data);
     });
+
+    socket.on('changeColour', function(data){
+        socketIO.sockets.emit('writeColour', data);
+    });
+
+    socket.on('changeVisibility', function(data){
+        socketIO.sockets.emit('writeVisibility', data);
+    });
 });
 
 // start server
