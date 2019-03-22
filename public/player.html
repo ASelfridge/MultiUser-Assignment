@@ -2,6 +2,7 @@
 <html>
     <head>
         <script src="js/aframe-v0.8.2.min.js"></script>
+        <script src="js/aframe-physics-system.min.js"></script>
         <script src="js/global.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script>
@@ -17,12 +18,19 @@
     <body>
         <!-- <a-scene fog="color:#FFF;density:0.06;type:exponential"> -->
         <a-scene>
-            <a-entity read id="player1" position="0 2 0" camera wasd-controls look-controls>
+            <a-entity 
+                id="player1" 
+                read="writeTo: playerEmulate; file: 1"
+                position="0 2 0" 
+                camera
+                wasd-controls 
+                look-controls>
+                <a-entity geometry="primitive: box; height: 2;" position="0 -1 0"></a-entity>
                 <a-entity cursor="rayOrigin:mouse"></a-entity>
-                <a-entity geometry="primitive: box;" position="0 -1 0" scale="1 2 1" material="color: red"></a-entity>
             </a-entity>
-            <a-entity geometry="primitive: plane; width: 100; height: 100" rotation="-90 0 0" material="color: black"></a-entity>
-            <a-entity geometry="primitve: box" position="0 1 -4"></a-entity>
+            <a-entity static-body geometry="primitive: plane; width: 100; height: 100" rotation="-90 0 0" material="color: black"></a-entity>
+            <a-entity id="pickupBox" geometry="primitve: box" position="0 1 -4"></a-entity>
         </a-scene>
+        <script src="js/write2.js"></script>
     </body>
 </html>

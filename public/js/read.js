@@ -1,7 +1,14 @@
-
 AFRAME.registerComponent('read', {
-    schema:{},
+    schema:{
+        writeTo: {},
+        file: {default: 0}
+    },
     tick: function() {
-        socket.emit('readPos', this.el.object3D.position);
+        if (this.data.file == 1) {
+            socket.emit('readPos', {id: this.data.writeTo, pos: this.el.object3D.position, rot: this.el.object3D.rotation});
+        }
+        else if(this.data.file == 2){
+            socket.emit('readPos2', {id: this.data.writeTo, pos: this.el.object3D.position, rot: this.el.object3D.rotation});
+        }
     }
 });
