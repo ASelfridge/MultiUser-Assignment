@@ -26,8 +26,14 @@
                     <a-entity id="cursor" cursor="rayOrigin:mouse" super-hands="colliderEvent:raycaster-intersection;colliderEventProperty:els;colliderEndEvent:raycaster-intersection-cleared;colliderEndEventProperty:clearedEls"></a-entity>
                 </a-entity>
                 <a-entity id="watchCam2" position="38 0 0" rotation="-15 90 0" camera="active: false">
-                    <a-entity cam-switch geometry="primitive: sphere"></a-entity>
+                    <a-entity cam-switch id="ball" geometry="primitive: sphere"></a-entity>
                 </a-entity>
+            </a-entity>
+            <a-entity position="0 20 0">
+                    <a-entity class="camCountdown" text="value: 3; width: 3.5; wrapCount: 1; color: red" visible="false"></a-entity>
+                    <a-entity class="camCountdown" text="value: 3; width: 3.5; wrapCount: 1; color: red" visible="false" rotation="0 90 0"></a-entity>
+                    <a-entity class="camCountdown" text="value: 3; width: 3.5; wrapCount: 1; color: red" visible="false" rotation="0 180 0"></a-entity>
+                    <a-entity class="camCountdown" text="value: 3; width: 3.5; wrapCount: 1; color: red" visible="false" rotation="0 270 0"></a-entity>
             </a-entity>
             <a-entity id="playerEmulate" geometry="primitive: box;" position="0 1 0" scale="1 2 1" material="color: red"></a-entity>
             <a-entity

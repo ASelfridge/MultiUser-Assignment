@@ -26,11 +26,11 @@ socketIO.on('connection', function(socket) {
     });
 
     socket.on('readPos', function(data) {
-        console.log(data);
+        //console.log(data);
         socketIO.sockets.emit('writePos', data);
     });
     socket.on('readPos2', function(data) {
-        console.log(data);
+        //console.log(data);
         socketIO.sockets.emit('writePos2', data);
     });
 });
