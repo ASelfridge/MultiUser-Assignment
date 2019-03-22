@@ -33,6 +33,11 @@ socketIO.on('connection', function(socket) {
         //console.log(data);
         socketIO.sockets.emit('writePos2', data);
     });
+
+    // write camera switch countdown to player file
+    socket.on('setCountdown', function(data){
+        socketIO.sockets.emit('writeCountdown', data);
+    });
 });
 
 // start server

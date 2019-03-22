@@ -17,13 +17,17 @@ AFRAME.registerComponent('cam-switch', {
                     text[i].setAttribute('visible', 'true');
                     text[i].setAttribute('text', {'value': camCountdown});
                 }
+                // set countdown in other file
+                socket.emit('setCountdown', true);
 
                 // change text every second
-                var countdown = setInterval(function() {
+                let countdown = setInterval(function() {
                     camCountdown -= 1;
                     for(i = 0; i < text.length; i++) {
                         text[i].setAttribute('text', {'value': camCountdown});
-                    } 
+                    }
+                    // set countdown in other file
+                    socket.emit('setCountdown', true); 
                     // switch to selected camera at end of countdown
                     if(camCountdown <= 0) {
                         Context_AF.switch();
@@ -61,5 +65,8 @@ AFRAME.registerComponent('cam-switch', {
             text[i].setAttribute('visible', 'false');
             text[i].setAttribute('text', {'value': camCountdown});
         }
+        
+        // reset countdown timer in other file
+        socket.emit('setCountdown', false);
     }
 });
