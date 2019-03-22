@@ -46,6 +46,11 @@ socketIO.on('connection', function(socket) {
     socket.on('changeVisibility', function(data){
         socketIO.sockets.emit('writeVisibility', data);
     });
+
+    // event for watcher winning
+    socket.on('watcherWin', function(){
+        socketIO.sockets.emit('groundLose');
+    });
 });
 
 // start server
