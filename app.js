@@ -26,12 +26,25 @@ socketIO.on('connection', function(socket) {
     });
 
     socket.on('readPos', function(data) {
-        console.log(data);
+        //console.log(data);
         socketIO.sockets.emit('writePos', data);
     });
     socket.on('readPos2', function(data) {
-        console.log(data);
+        //console.log(data);
         socketIO.sockets.emit('writePos2', data);
+    });
+
+    // write camera switch countdown to player file
+    socket.on('setCountdown', function(data){
+        socketIO.sockets.emit('writeCountdown', data);
+    });
+
+    socket.on('changeColour', function(data){
+        socketIO.sockets.emit('writeColour', data);
+    });
+
+    socket.on('changeVisibility', function(data){
+        socketIO.sockets.emit('writeVisibility', data);
     });
 });
 

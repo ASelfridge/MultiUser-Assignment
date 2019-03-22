@@ -16,18 +16,29 @@
         </script>
         <script src="js/read.js"></script>
         <script src="js/pickup.js"></script>
+        <script src="js/camSwitch.js"></script>
     </head>
     <body>
         <a-scene>
-            <a-entity id="player2" position="0 17 45" rotation="0 0 0">
-                <a-entity id="topDownCam" camera>
-                    <a-entity id="cursor" cursor="rayOrigin:mouse" raycaster="showLine: true;" super-hands="colliderEvent:raycaster-intersection;colliderEventProperty:els;colliderEndEvent:raycaster-intersection-cleared;colliderEndEventProperty:clearedEls"></a-entity>
+            <a-entity position="0 17 0" rotation="0 0 0">
+                <a-entity id="watchCam1" position="-38 0 0" rotation="0 -90 0" camera class="activeCamera">
+                    <a-entity id="camTarget1" cam-switch geometry="primitive: sphere" material="color: blue"></a-entity>
+                    <a-entity id="cursor" cursor="rayOrigin:mouse" super-hands="colliderEvent:raycaster-intersection;colliderEventProperty:els;colliderEndEvent:raycaster-intersection-cleared;colliderEndEventProperty:clearedEls"></a-entity>
                 </a-entity>
+                <a-entity id="watchCam2" position="38 0 0" rotation="-15 90 0" camera="active: false">
+                    <a-entity id="camTarget2" cam-switch geometry="primitive: sphere" material="color: blue"></a-entity>
+                </a-entity>
+            </a-entity>
+            <a-entity position="0 20 0">
+                    <a-entity class="camCountdown" text="value: 3; width: 3.5; wrapCount: 1; color: red" visible="false"></a-entity>
+                    <a-entity class="camCountdown" text="value: 3; width: 3.5; wrapCount: 1; color: red" visible="false" rotation="0 90 0"></a-entity>
+                    <a-entity class="camCountdown" text="value: 3; width: 3.5; wrapCount: 1; color: red" visible="false" rotation="0 180 0"></a-entity>
+                    <a-entity class="camCountdown" text="value: 3; width: 3.5; wrapCount: 1; color: red" visible="false" rotation="0 270 0"></a-entity>
             </a-entity>
             <a-entity id="playerEmulate" geometry="primitive: box;" position="0 1 0" scale="1 2 1" material="color: red"></a-entity>
             <a-entity
                 id="ground" 
-                static-body 
+                static-body="mass: 20" 
                 geometry="primitive: plane; width: 100; height: 100" 
                 rotation="-90 0 0" 
                 material="color: black">
@@ -42,6 +53,12 @@
                 position="0 1 -4">
             </a-entity>
         </a-scene>
+        <script>
+            // set correct cursor orientation
+            let cursor = document.querySelector('#cursor');
+            let cursParent = cursor.object3D.parent.el;
+            cursor.object3D.rotation.set(-1 * cursParent.object3D.rotation._x, -1 * cursParent.object3D.rotation._y, -1 * cursParent.object3D.rotation._z);
+        </script>
     </body>
     <script src="js/write.js"></script>
 </html>

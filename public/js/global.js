@@ -1,4 +1,3 @@
-var player1Pos = new Object();
-player1Pos.x = 0;
-player1Pos.y = 0;
-player1Pos.z = 0;
+var MAX_COUNTDOWN = 10
+var camCountdown = MAX_COUNTDOWN;
+var swappingCam = false;
