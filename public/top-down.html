@@ -15,6 +15,7 @@
             });
         </script>
         <script src="js/read.js"></script>
+        <script src="js/pickup.js"></script>
     </head>
     <body>
         <a-scene>
@@ -24,8 +25,22 @@
                 </a-entity>
             </a-entity>
             <a-entity id="playerEmulate" geometry="primitive: box;" position="0 1 0" scale="1 2 1" material="color: red"></a-entity>
-            <a-entity static-body geometry="primitive: plane; width: 100; height: 100" rotation="-90 0 0" material="color: black"></a-entity>
-            <a-entity read="writeTo: pickupBox; file: 2" grabbable geometry="primitve: box" position="0 1 -4"></a-entity>
+            <a-entity
+                id="ground" 
+                static-body 
+                geometry="primitive: plane; width: 100; height: 100" 
+                rotation="-90 0 0" 
+                material="color: black">
+            </a-entity>
+            <a-entity 
+                id="box"
+                static-body
+                read="writeTo: pickupBox; file: 2" 
+                grabbable
+                pickup
+                geometry="primitve: box" 
+                position="0 1 -4">
+            </a-entity>
         </a-scene>
     </body>
     <script src="js/write.js"></script>
