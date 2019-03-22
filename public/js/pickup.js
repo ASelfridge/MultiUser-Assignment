@@ -1,8 +1,8 @@
 AFRAME.registerComponent('pickup', {
     schema:{},
     init: function() {
-        Context_AF = this;
-        el = Context_AF.el;
+        let Context_AF = this;
+        let el = Context_AF.el;
 
         Context_AF.falling = false;
 
@@ -16,7 +16,6 @@ AFRAME.registerComponent('pickup', {
         });
 
         el.addEventListener('collide', function(e) {
-            console.log(e.detail);
             // set back to static if colliding with ground
             if(Context_AF.falling && e.detail.body.el.id == 'ground') {
                 el.removeAttribute('dynamic-body');
