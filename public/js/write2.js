@@ -41,3 +41,14 @@ socket.on('groundLose', function(){
     player.removeAttribute('wasd-controls');
     player.removeAttribute('look-controls');
 });
+
+socket.on('spawnPowerup', function(data) {
+    let powerup = document.createElement('a-entity');
+    powerup.setAttribute('geometry', {'primitive': 'box'});
+    powerup.setAttribute('material', {'color': 'blue'});
+    powerup.object3D.position.set(data.x, data.y + 1, data.z);
+    powerup.setAttribute('give-speed', '');
+    console.log(powerup);
+    let scene = document.querySelector('a-scene');
+    scene.appendChild(powerup);
+});

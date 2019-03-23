@@ -20,6 +20,7 @@
         <script src="js/pickup.js"></script>
         <script src="js/camSwitch.js"></script>
         <script src="js/catch.js"></script>
+        <script src="js/spawn.js"></script>
     </head>
     <body>
         <a-scene>
@@ -60,7 +61,8 @@
             </a-entity>
 
             <a-entity
-                id="ground" 
+                id="ground"
+                spawn 
                 static-body="mass: 20" 
                 geometry="primitive: plane; width: 75; height: 75" 
                 rotation="-90 0 0" 

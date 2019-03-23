@@ -51,6 +51,11 @@ socketIO.on('connection', function(socket) {
     socket.on('watcherWin', function(){
         socketIO.sockets.emit('groundLose');
     });
+
+    // event for watcher winning
+    socket.on('spawnPrompt', function(data){
+        socketIO.sockets.emit('spawnPowerup', data);
+    });
 });
 
 // start server
