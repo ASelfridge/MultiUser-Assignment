@@ -19,6 +19,11 @@
     <body>
         <!-- <a-scene fog="color:#FFF;density:0.06;type:exponential"> -->
         <a-scene>
+            <a-assets>
+                <img id="skymap" src="assets/textures/CloudySky.jpg" />
+            </a-assets>
+
+            <a-entity light="type: point; castShadow: true"></a-entity>
             <a-entity 
                 id="player1" 
                 read="writeTo: playerEmulate; file: 1"
@@ -38,6 +43,11 @@
             </a-entity>
             <a-entity static-body geometry="primitive: plane; width: 100; height: 100" rotation="-90 0 0" material="color: black"></a-entity>
             <a-entity id="pickupBox" geometry="primitve: box" position="0 1 -4"></a-entity>
+
+            <a-entity   id="sky"
+                        geometry="primitive: sphere; radius: 500;"
+                        material="shader: flat; src: #skymap; side: back;">
+            </a-entity>
         </a-scene>
         <div id="loseText" class="fullScreen">
             <h1>YOU WERE CAUGHT</h1>
