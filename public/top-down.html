@@ -23,12 +23,7 @@
     </head>
     <body>
         <a-scene>
-            <a-assets>
-                <img id="skymap" src="assets/textures/CloudySky.jpg" />
-                <img id="wood" src="assets/textures/WoodPlanks.jpg" />
-            </a-assets>
-            
-            <a-entity light="type: directional; castShadow: true; intensity: 0.5; color: #ffffff" position="51 65 26"></a-entity>
+            <a-entity light="type: directional; castShadow: true; intensity: 0.5; color: #ffffff;" position="51 65 26"></a-entity>
             <a-entity light="type: directional; castShadow: true; intensity: 0.1; color: red" position="51 65 26"></a-entity>
             <a-entity light="type: point; castShadow: true; intensity: 0.3;" position="25 5 25"></a-entity>
             <a-entity light="type: point; castShadow: true; intensity: 0.2; color: red;" position="23 19 -36"></a-entity>
@@ -37,15 +32,18 @@
 
             <a-entity position="0 40 0" rotation="0 0 0">
                 <a-entity id="watchCam1" position="-45 0 -45" rotation="-45 -135 0" camera class="activeCamera">
-                    <a-entity id="camTarget1" cam-switch geometry="primitive: sphere" material="color: blue"></a-entity>
+                    <a-entity id="camTarget1" cam-switch geometry="primitive: sphere" material="color: #5cf512"></a-entity>
                     <a-entity id="cursor" cursor="rayOrigin:mouse" super-hands="colliderEvent:raycaster-intersection;colliderEventProperty:els;colliderEndEvent:raycaster-intersection-cleared;colliderEndEventProperty:clearedEls"></a-entity>
                 </a-entity>
-                <a-entity id="watchCam2" position="38 0 0" rotation="-15 90 0" camera="active: false">
-                    <a-entity id="camTarget2" cam-switch geometry="primitive: sphere" material="color: blue"></a-entity>
+                <a-entity id="watchCam2" position="30 -26 -44" rotation="-10 155 0" camera="active: false">
+                    <a-entity id="camTarget2" cam-switch geometry="primitive: sphere" material="color: #5cf512"></a-entity>
+                </a-entity>
+                <a-entity id="watchCam3" position="30 -15 30" rotation="-20 55 0" camera="active: false">
+                    <a-entity id="camTarget3" cam-switch geometry="primitive: sphere" material="color: #5cf512"></a-entity>
                 </a-entity>
             </a-entity>
 
-            <a-entity position="0 20 0">
+            <a-entity position="0 30 0">
                     <a-entity class="camCountdown" text="value: 3; width: 3.5; wrapCount: 1; color: red" visible="false"></a-entity>
                     <a-entity class="camCountdown" text="value: 3; width: 3.5; wrapCount: 1; color: red" visible="false" rotation="0 90 0"></a-entity>
                     <a-entity class="camCountdown" text="value: 3; width: 3.5; wrapCount: 1; color: red" visible="false" rotation="0 180 0"></a-entity>
@@ -56,7 +54,7 @@
                 id="playerEmulate"
                 catch 
                 geometry="primitive: box;" 
-                position="0 1 0" 
+                position="0 0 0" 
                 scale="1 2 1" 
                 material="color: red">
             </a-entity>
@@ -66,14 +64,16 @@
                 static-body="mass: 20" 
                 geometry="primitive: plane; width: 75; height: 75" 
                 rotation="-90 0 0" 
-                material="color: grey">
+                material="color: grey"
+                shadow="receive: true">
             </a-entity>
-            <a-entity geometry="primitive: plane; width: 75; height: 25" position="0 12.5 37.5" rotation="0 180 0" material="color: grey"></a-entity>
-            <a-entity geometry="primitive: plane; width: 75; height: 25" position="37.5 12.5 0" rotation="0 -90 0" material="color: grey"></a-entity>
-            <a-entity geometry="primitive: plane; width: 75; height: 100" position="-37.5 -50 0" rotation="0 -90 0" material="color: grey; emissive: #5cf512; emissiveIntensity: 0.05"></a-entity>
-            <a-entity geometry="primitive: plane; width: 75; height: 100" position="0 -50 -37.5" rotation="0 180 0" material="color: grey; emissive: #5cf512; emissiveIntensity: 0.05"></a-entity>
+            <a-entity static-body geometry="primitive: plane; width: 75; height: 25" position="0 12.5 37.5" rotation="0 180 0" material="color: grey" shadow="receive: true"></a-entity>
+            <a-entity static-bodygeometry="primitive: plane; width: 75; height: 25" position="37.5 12.5 0" rotation="0 -90 0" material="color: grey" shadow="receive: true"></a-entity>
+            <a-entity geometry="primitive: plane; width: 75; height: 100" position="-37.5 -50 0" rotation="0 -90 0" material="color: grey; emissive: #5cf512; emissiveIntensity: 0.05" shadow="receive: true"></a-entity>
+            <a-entity geometry="primitive: plane; width: 75; height: 100" position="0 -50 -37.5" rotation="0 180 0" material="color: grey; emissive: #5cf512; emissiveIntensity: 0.05" shadow="receive: true"></a-entity>
+            <a-entity geometry="primitive: cylinder" position="0 25 37.5" rotation="0 0 90" scale="0.2 75 0.2" material="color: #f977ef"></a-entity>
+            <a-entity geometry="primitive: cylinder" position="37.5 25 0" rotation="90 0 0" scale="0.2 75 0.2" material="color: #f977ef"></a-entity>
             
-
             <a-entity 
                 id="box"
                 static-body
@@ -83,13 +83,37 @@
                 geometry="primitve: box" 
                 position="0 1 -4">
             </a-entity>
+
+            <a-entity read="writeTo: box1; file: 2" static-body grabbable pickup geometry="box" scale="5 5 5" position="-2 2.5 16.5" material="color: grey; emissive: #6fe3ea; emissiveIntensity: 0.5"></a-entity>
+            <a-entity read="writeTo: box2; file: 2" static-body grabbable pickup geometry="box" scale="5 5 5" position="-3.5 2.5 22" rotatio="0 -12 0" material="color: grey; emissive: #6fe3ea; emissiveIntensity: 0.5"></a-entity>
+            <a-entity read="writeTo: box3; file: 2" static-body grabbable pickup geometry="box" scale="5 5 5" position="-2.6 7.5 20" rotation="0 9 0"  material="color: grey; emissive: #6fe3ea; emissiveIntensity: 0.5"></a-entity>
+
+            <a-entity geometry="primitive: cylinder; radius: 1; height: 8" position="-36 4 34" material="grey"></a-entity>
+            <a-entity geometry="primitive: cylinder; radius: 1; height: 8" position="-36 4 24" material="grey"></a-entity>
+            <a-entity geometry="primitive: cylinder; radius: 1; height: 8" position="-36 4 14" material="grey"></a-entity>
+            <a-entity geometry="primitive: cylinder; radius: 1; height: 8" position="-36 4 4" material="grey"></a-entity>
+            <a-entity read="writeTo: bigCyl; file: 2" static-body grabbable pickup geometry="primitive: cylinder; radius: 1.5; height: 30" position="-30 5.5 21" material="color: grey; emissive: #6fe3ea; emissiveIntensity: 0.5" rotation="71.275 12.046 31.652"></a-entity>
+
+            <a-entity static-body geometry="box" scale="1 25 25" position="-15 12.5 25" material="grey"></a-entity>
+            <a-entity static-body geometry="box" scale="1 25 33" position="1 12.5 12" rotation="0 90 0" material="grey"></a-entity>
+            <a-entity geometry="box" scale="15 18 1" position="0 6 8.6" rotation="16.525 0 0" material="gre"></a-entity>
+
+            <a-entity read="writeTo: leaningBox; file: 2" static-body grabbable pickup geometry="box" scale="1 10 8" position="35 5 -23" rotation="0 0 -25" material="color: grey; emissive: #6fe3ea; emissiveIntensity: 0.5"></a-entity>
+            <a-entity static-body geometry="box" scale="1 16 4" position="34 8 -20" rotation="0 0 -20" material="grey"></a-entity>
+
+            <a-entity geometry="box" scale="1 25 25" position="6.7 12.5 -19" material="grey"></a-entity>
+            <a-entity geometry="box" scale="16 25 1" position="-1.8 12.5 -24" material="grey"></a-entity>
+
+            <a-entity geometry="box" scale="4 8 4" position="-35 4 -35" material="grey"></a-entity>
+            <a-entity geometry="box" scale="4 4 6" position="-35 2 -30" material="grey"></a-entity>
+
             <a-entity   id="sky"
                         geometry="primitive: sphere; radius: 500;"
                         material="shader: flat; color: black; side: back;">
             </a-entity>
         </a-scene>
         <div id="winText" class="fullScreen">
-            <h1>YOU CAUGHT THE SMUGGLER</h1>
+            <h1>YOU CAUGHT THE PLAYER</h1>
         </div>
         <script>
             console.log('running');

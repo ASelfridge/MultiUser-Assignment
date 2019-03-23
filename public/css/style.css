@@ -16,6 +16,6 @@ h1 {
     left: 50%; 
     top: 50%; 
     transform: translate(-50%, -50%);
-    color: red; 
+    color: white; 
     font-size: 70px;
 }
